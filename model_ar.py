@@ -51,6 +51,15 @@ def complete_task(db,task_id):
 	db.commit()
 	print "Task %s Complete" % task_id
 
+def get_task(db, task_id):
+	c = db.cursor()
+	query = """SELECT * FROM Tasks WHERE task_id = ?"""
+	c.execute(query,  (task_id,))
+	result = c.fetchone()
+	if result:
+		fields = ["task_id", "title", "created_at", "completed_at", "notes", "task_user_id"]
+		return dict(zip(fields, result))
+
 def get_tasks(db, task_user_id=None):
 	c = db.cursor()
 	query = """SELECT * FROM Tasks WHERE task_user_id = ?"""
@@ -60,7 +69,6 @@ def get_tasks(db, task_user_id=None):
 		fields = ["task_id", "title", "created_at", "completed_at", "notes", "task_user_id"]
 		return dict(zip(fields, result))
 	else: 
-		print "Are you working?"
 		c = db.cursor()
 		query = """SELECT * FROM Tasks"""
 		c.execute(query,)
@@ -75,4 +83,5 @@ def get_tasks(db, task_user_id=None):
 			new_dict['notes']=row[4]
 			new_dict['task_user_id']=row[5]
 			l.append(new_dict)
-		return l
+		print l
+
