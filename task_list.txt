@@ -1,0 +1,22 @@
+
+task list:
+
+USER
+-id (integer)
+-email (varchar(32))
+-password	(varchar(32))
+-name	(varchar(52))
+
+TASK
+-id	(integer)
+-title (varchar(32))
+-created_at (Datetime)
+-complete_at (Datetime)
+-notes (text (150))
+-user_id (integer)
+
+-User can log in and view his list
+-User must be able to add a new task
+-User should be able to mark a task as complete
+-User should be able to delete task once complete
+-User can add notes for each task
