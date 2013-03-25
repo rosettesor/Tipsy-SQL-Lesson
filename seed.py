@@ -1,8 +1,8 @@
 """
 seed.py
 """
-import model
+import model_ar
 
-db = model.connect_db()
-user_id = model.new_user(db, "chriszf@gmail.com", "securepassword", "Christian")
-task = model.new_task(db, "Complete this task list", user_id)
+db = model_ar.connect_db()
+task_user_id = model_ar.new_user(db, "achen@gmail.com", "securepassword", "adelaide")
+task = model_ar.new_task(db, "programming", task_user_id)

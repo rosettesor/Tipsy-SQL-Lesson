@@ -71,7 +71,7 @@ def get_tasks(db, task_user_id=None):
 	else: 
 		c = db.cursor()
 		query = """SELECT * FROM Tasks"""
-		c.execute(query,)
+		c.execute(query,) 
 		result = c.fetchall()
 		l = []
 		for row in result:	
@@ -79,9 +79,9 @@ def get_tasks(db, task_user_id=None):
 			new_dict['task_id']=row[0]
 			new_dict['title']=row[1]
 			new_dict['created_at']=row[2]
-			new_dict['complete_at']=row[3]
+			new_dict['completed_at']=row[3]
 			new_dict['notes']=row[4]
 			new_dict['task_user_id']=row[5]
 			l.append(new_dict)
-		print l
+		return l
 
