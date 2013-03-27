@@ -23,13 +23,12 @@ def authenticate(db, email, password):
 	if result:
 		fields = ["user_id", "email", "password", "name"]
 		return dict(zip(fields, result))
-
 	return None
 
 def new_task(db, title, task_user_id):
 	c = db.cursor()
 	timestamp = datetime.now()
-	query = """INSERT INTO Tasks VALUES (NULL, ?, ?, NULL, NULL, ?)"""
+	query = """INSERT INTO Tasks VALUES (NULL, ?, ?, "Not Yet Complete", NULL, ?)"""
 	result = c.execute(query, (title, timestamp, task_user_id))
 	db.commit()
 	return result.lastrowid
@@ -49,7 +48,6 @@ def complete_task(db,task_id):
 	query = """UPDATE Tasks SET completed_at=? WHERE task_id=?"""
 	c.execute(query, (timestamp, task_id))
 	db.commit()
-	print "Task %s Complete" % task_id
 
 def get_task(db, task_id):
 	c = db.cursor()

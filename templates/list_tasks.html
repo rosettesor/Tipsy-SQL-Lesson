@@ -1,6 +1,27 @@
 <html>
-    <head><title>Tipsy</title></head>
+    <head>
+    	<title>
+    		Tipsy
+    	</title>
+		<link rel = "stylesheet" href="/static/css/bootstrap.css" type="text/css">
+	</head>
     <body>
+        <h1> New Task Title </h1>
+        <form method = "POST" action="/save_task">
+            <input type = "text" name = "task_title"></input>
+            <input type = "submit">
+        </form>
         <h1>Task List</h1>
-    </body>
+        <ul id = "Task_List">
+        {% for task in tasks %}
+        	<li>Task {{task['task_id']}}: {{task['title']}}, {{task['completed_at']}} </li>
+        {% endfor %}
+    	</ul>
+        <h1>Task Completed? Enter Task ID #</h1>
+        <form method= "POST" action="/done_task">
+            <input type= "text" name = "task_complete"></input>
+            <input type= "submit">
+        </form>
+<!--         <h2>{{ tasks }}</h2>-->    
+	</body>
 </html>
